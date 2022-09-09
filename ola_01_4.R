@@ -46,8 +46,9 @@ rolls <- replicate(1000000, roll_sum())
 qplot(rolls, binwidth = 1)
 
 #Opgave 4.2
-#
-#
+#Lav et script (en funktion) i R-studio, der kan slå med 2 terninger og kun kan slå 1, 3 og 6 Slå nu 10.000 gange
+#med jeres terninger og lav et barplot af summen af jeres slag.
+
 roll_4_2 <- function(){
   die <- 1:6
   dice <- sample(die,size = 2, replace = TRUE,
