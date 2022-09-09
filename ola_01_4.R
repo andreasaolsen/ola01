@@ -3,7 +3,7 @@
 
 #kør packmann før du går videre
 pacman::p_load(pacman, dplyr, tidyverse, ggplot2, tidyr)
-
+install.packages("pacman")
 # 4.1 Funktion med med påvirkning af udfald. Der er 4 gange større chance for at slå en 6´er.
 # Sandsynligheden er 40/100 for en 6´er imod 10/100 for tal 1:5,
 
@@ -45,26 +45,17 @@ roll_sum()
 rolls <- replicate(1000000, roll_sum())
 qplot(rolls, binwidth = 1)
 
-
-#4.2 Lav et script (en funktion) i R-studio, der kan slå med 2 terninger og kun kan slå 1, 3 og 6 Slå nu 10.000 gange
-#med jeres terninger og lav et barplot af summen af jeres slag.
-roll <- function() {
+#Opgave 4.2
+#
+#
+roll_4_2 <- function(){
   die <- 1:6
-  dice <- sample(
-    die,
-    size = 2,
-    replace = TRUE,
-    prob = c(1, 0, 1, 0, 0, 1)
-  )
+  dice <- sample(die,size = 2, replace = TRUE,
+                 prob = c(4/12,1/12,1/12,1/12,1/12,4/12))
   sum(dice)
 }
-#kør funktionen
-roll()
-
-#replikerer funktionen
-roll_4_2 <- replicate(10000, roll())
-#viser plot
-qplot(roll_4_2, binwidth = 1)
+vektor_4_2 <- replicate(10000,roll_4_2())
+qplot(vektor_4_2,binwidth =1)
 
 #Opgave 4.3
 #Sandsynligheden for at slå 2,4 og 5 sættes til 0. Derfor vil terningen vise kun slå 1,3 eller 6.
@@ -99,4 +90,15 @@ sum_af_vektorer <- data.frame(
 )
 #summen af kolonner
 colSums(sum_af_vektorer)
+
+fordeling_4_2 <- table(vektor_4_2)
+fordeling_4_2
+
+fordeling_4_3 <- table(vektor_4_3)
+fordeling_4_3
+
+sum_af_vektorer_1 <- data.frame(
+  "Opg. 4.2" = c(fordeling_4_2),
+  "Opg. 4.3" = c(fordeling_4_3),
+)
 
